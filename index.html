@@ -1,123 +1,280 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+```
+<meta charset="UTF-8">
 
-    <title>Book Readers & Beyond</title>
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet"
-          href="style.css">
+<title>Book Readers & Beyond</title>
 
-    <!-- StPageFlip -->
-    <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
+<link rel="stylesheet"
+      href="style.css">
 
-    <!-- PDF.js -->
-    <script type="module"
-            src="script.js">
-    </script>
+<!-- Page Flip Library -->
+<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
+
+<!-- Our JavaScript -->
+<script type="module"
+        src="script.js">
+</script>
+```
+
 </head>
 
 <body>
 
-    <header class="site-header">
+<!-- =========================================
+     HEADER
+========================================= -->
 
-        <h1>📚 Book Readers & Beyond</h1>
+<header class="site-header">
 
-        <p>
-            A little place for stories, imagination,
-            and wonderful adventures.
-        </p>
+```
+<h1>📚 Book Readers & Beyond</h1>
 
-    </header>
-
-
-    <main>
-
-        <section class="library">
-
-            <h2>Children's Storybooks</h2>
-
-            <div class="book-grid">
-
-                <!-- BOOK 1 -->
-
-                <article class="book-card">
-
-                    <img
-                        src="covers/be-kind-to-every-creature.jpg"
-                        alt="Be Kind to Every Creature book cover"
-                    >
-
-                    <h3>
-                        Be Kind to Every Creature!
-                    </h3>
-
-                    <p>
-                        A gentle story about kindness,
-                        caring hearts, and little creatures.
-                    </p>
-
-                    <button
-                        onclick="openBook('books/be-kind-to-every-creature.pdf')">
-
-                        📖 Read Book
-
-                    </button>
-
-                </article>
+<p>
+    Stories • Books • Imagination • Learning
+</p>
 
 
-            </div>
+<!-- SEARCH -->
 
-        </section>
+<div class="search-box">
 
-    </main>
-
-
-    <!-- FLIPBOOK VIEWER -->
-
-    <div
-        id="viewer"
-        class="viewer hidden"
+    <input
+        type="search"
+        id="searchInput"
+        placeholder="Search books..."
+        aria-label="Search books"
     >
 
-        <div class="viewer-header">
+    <span class="search-icon">🔎</span>
 
-            <button onclick="closeBook()">
-                ✕ Close
-            </button>
+</div>
+```
 
-            <span id="page-number">
-                Loading...
-            </span>
+</header>
 
-        </div>
+<!-- =========================================
+     MAIN LIBRARY
+========================================= -->
 
+<main class="library">
+
+```
+<!-- =====================================
+     CHILDREN'S BOOKS
+====================================== -->
+
+<section class="category-section">
+
+    <h2>👧 Children's Books</h2>
+
+
+    <!-- SINHALA -->
+
+    <div class="language-section">
+
+        <h3>Sinhala</h3>
 
         <div
-            id="book-container"
-            class="book-container"
+            class="book-grid"
+            id="children-sinhala"
         >
-        </div>
 
-
-        <div class="controls">
-
-            <button onclick="previousPage()">
-                ◀ Previous
-            </button>
-
-            <button onclick="nextPage()">
-                Next ▶
-            </button>
+            <!-- Add Sinhala children's books here -->
 
         </div>
 
     </div>
+
+
+
+    <!-- ENGLISH -->
+
+    <div class="language-section">
+
+        <h3>English</h3>
+
+        <div
+            class="book-grid"
+            id="children-english"
+        >
+
+
+            <!-- BOOK: BE KIND TO EVERY CREATURE -->
+
+            <article
+                class="book-card"
+                data-title="Be Kind to Every Creature"
+                data-category="Children's Books English"
+                data-description="A gentle story about kindness, caring hearts, and little creatures."
+            >
+
+                <img
+                    src="covers/be-kind-to-every-creature.jpg"
+                    alt="Be Kind to Every Creature book cover"
+                >
+
+                <button
+                    onclick="openBook(
+                        'books/be-kind-to-every-creature.pdf'
+                    )"
+                >
+                    📖 Read Book
+                </button>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     OTHER BOOKS
+========================================== -->
+
+<section class="category-section">
+
+    <h2>📚 Other Books</h2>
+
+
+    <!-- SINHALA -->
+
+    <div class="language-section">
+
+        <h3>Sinhala Books</h3>
+
+        <div
+            class="book-grid"
+            id="other-sinhala"
+        >
+
+            <!-- Add Sinhala books here -->
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ENGLISH -->
+
+    <div class="language-section">
+
+        <h3>English Books</h3>
+
+        <div
+            class="book-grid"
+            id="other-english"
+        >
+
+            <!-- Add English books here -->
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- NO SEARCH RESULTS -->
+
+<div
+    id="no-results"
+    class="no-results hidden"
+>
+
+    <p>📚 No books found.</p>
+
+    <p>
+        Try another title or keyword.
+    </p>
+
+</div>
+```
+
+</main>
+
+<!-- =========================================
+     FLIPBOOK VIEWER
+========================================= -->
+
+<div
+    id="viewer"
+    class="viewer hidden"
+>
+
+```
+<div class="viewer-header">
+
+    <button
+        onclick="closeBook()"
+        class="close-button"
+    >
+        ✕ Close
+    </button>
+
+
+    <span id="page-number">
+        Loading...
+    </span>
+
+</div>
+
+
+
+<div
+    id="book-container"
+    class="book-container"
+>
+</div>
+
+
+
+<div class="controls">
+
+    <button onclick="previousPage()">
+        ◀ Previous
+    </button>
+
+    <button onclick="nextPage()">
+        Next ▶
+    </button>
+
+</div>
+```
+
+</div>
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer class="site-footer">
+
+```
+<p>
+    © 2026 Pushpakanthie Wijekoon
+</p>
+
+<p>
+    Books and original creative works are
+    protected by copyright.
+</p>
+```
+
+</footer>
 
 </body>
 
