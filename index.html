@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Book Readers & Beyond</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+    <!-- StPageFlip -->
+    <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
+
+    <!-- PDF.js -->
+    <script type="module"
+            src="script.js">
+    </script>
+</head>
+
+<body>
+
+    <header class="site-header">
+
+        <h1>📚 Book Readers & Beyond</h1>
+
+        <p>
+            A little place for stories, imagination,
+            and wonderful adventures.
+        </p>
+
+    </header>
+
+
+    <main>
+
+        <section class="library">
+
+            <h2>Children's Storybooks</h2>
+
+            <div class="book-grid">
+
+                <!-- BOOK 1 -->
+
+                <article class="book-card">
+
+                    <img
+                        src="covers/be-kind-to-every-creature.jpg"
+                        alt="Be Kind to Every Creature book cover"
+                    >
+
+                    <h3>
+                        Be Kind to Every Creature!
+                    </h3>
+
+                    <p>
+                        A gentle story about kindness,
+                        caring hearts, and little creatures.
+                    </p>
+
+                    <button
+                        onclick="openBook('books/be-kind-to-every-creature.pdf')">
+
+                        📖 Read Book
+
+                    </button>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FLIPBOOK VIEWER -->
+
+    <div
+        id="viewer"
+        class="viewer hidden"
+    >
+
+        <div class="viewer-header">
+
+            <button onclick="closeBook()">
+                ✕ Close
+            </button>
+
+            <span id="page-number">
+                Loading...
+            </span>
+
+        </div>
+
+
+        <div
+            id="book-container"
+            class="book-container"
+        >
+        </div>
+
+
+        <div class="controls">
+
+            <button onclick="previousPage()">
+                ◀ Previous
+            </button>
+
+            <button onclick="nextPage()">
+                Next ▶
+            </button>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
