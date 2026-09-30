@@ -1,122 +1,296 @@
-/* ------------------------------
+/* =========================================
    GENERAL
------------------------------- */
+========================================= */
 
 * {
     box-sizing: border-box;
 }
 
-body {
-    margin: 0;
-    font-family: Georgia, "Times New Roman", serif;
-    background: #f8f3ed;
-    color: #2a3439;
+
+html {
+    scroll-behavior: smooth;
 }
 
 
-/* ------------------------------
+body {
+
+    margin: 0;
+
+    padding: 0;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #f8f3ed;
+
+    color: #2a3439;
+
+    line-height: 1.6;
+
+}
+
+
+
+/* =========================================
    HEADER
------------------------------- */
+========================================= */
 
 .site-header {
-    text-align: center;
-    padding: 45px 20px 35px;
+
     background: #f1e7dc;
+
+    text-align: center;
+
+    padding:
+        35px
+        20px
+        30px;
+
 }
+
 
 .site-header h1 {
-    margin: 0;
-    font-size: 38px;
+
+    margin:
+        0
+        0
+        8px;
+
+    font-size: 40px;
+
     color: #2a3439;
+
 }
+
 
 .site-header p {
-    font-size: 18px;
-    margin-top: 12px;
+
+    margin:
+        0
+        20px;
+
+    font-size: 17px;
+
+    color: #5f686d;
+
 }
 
 
-/* ------------------------------
-   LIBRARY
------------------------------- */
 
-.library {
-    max-width: 1100px;
-    margin: auto;
-    padding: 45px 20px;
-}
+/* =========================================
+   SEARCH BOX
+========================================= */
 
-.library h2 {
-    text-align: center;
-    font-size: 30px;
-    margin-bottom: 35px;
-}
+.search-box {
 
+    position: relative;
 
-.book-grid {
-    display: grid;
-    grid-template-columns:
-        repeat(auto-fit, minmax(240px, 280px));
+    max-width: 500px;
 
-    justify-content: center;
-    gap: 35px;
+    margin:
+        22px
+        auto
+        0;
+
 }
 
 
-/* ------------------------------
-   BOOK CARD
------------------------------- */
+.search-box input {
 
-.book-card {
+    width: 100%;
+
+    padding:
+        14px
+        50px
+        14px
+        18px;
+
+    border:
+        1px solid #d7cec5;
+
+    border-radius: 30px;
+
     background: white;
-    border-radius: 12px;
 
-    padding: 18px;
+    font-size: 16px;
 
-    text-align: center;
+    color: #2a3439;
+
+    outline: none;
 
     box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.10);
+        0 4px 14px
+        rgba(0, 0, 0, 0.06);
+
+}
+
+
+.search-box input:focus {
+
+    border-color: #e07a5f;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(224, 122, 95, 0.15);
+
+}
+
+
+.search-icon {
+
+    position: absolute;
+
+    right: 18px;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    font-size: 21px;
+
+    pointer-events: none;
+
+}
+
+
+
+/* =========================================
+   MAIN LIBRARY
+========================================= */
+
+.library {
+
+    max-width: 1200px;
+
+    margin:
+        0
+        auto;
+
+    padding:
+        45px
+        25px
+        70px;
+
+}
+
+
+
+/* =========================================
+   CATEGORY SECTION
+========================================= */
+
+.category-section {
+
+    margin-bottom: 45px;
+
+}
+
+
+.category-section h2 {
+
+    text-align: center;
+
+    font-size: 30px;
+
+    margin:
+        0
+        0
+        35px;
+
+    color: #2a3439;
+
+}
+
+
+
+/* =========================================
+   BOOK GRID
+========================================= */
+
+.book-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(220px, 280px)
+        );
+
+    justify-content: center;
+
+    gap: 35px;
+
+}
+
+
+
+/* =========================================
+   BOOK CARD
+========================================= */
+
+.book-card {
+
+    background: white;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 7px 22px
+        rgba(0, 0, 0, 0.10);
 
     transition:
         transform 0.25s ease,
         box-shadow 0.25s ease;
+
+    text-align: center;
+
+    padding-bottom: 18px;
+
 }
+
 
 .book-card:hover {
-    transform: translateY(-5px);
+
+    transform:
+        translateY(-5px);
 
     box-shadow:
-        0 12px 30px rgba(0, 0, 0, 0.15);
+        0 12px 30px
+        rgba(0, 0, 0, 0.15);
+
 }
 
+
+
+/* =========================================
+   BOOK COVER
+========================================= */
 
 .book-card img {
+
     width: 100%;
-    border-radius: 8px;
+
+    height: auto;
+
+    display: block;
+
+    object-fit: contain;
+
 }
 
 
-.book-card h3 {
-    font-size: 21px;
-    margin: 18px 0 10px;
-}
 
+/* =========================================
+   READ BOOK BUTTON
+========================================= */
 
-.book-card p {
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-
-/* ------------------------------
-   BUTTON
------------------------------- */
-
-.book-card button,
-.controls button,
-.viewer-header button {
+.read-button {
 
     border: none;
 
@@ -124,7 +298,9 @@ body {
 
     color: white;
 
-    padding: 11px 20px;
+    padding:
+        11px
+        22px;
 
     border-radius: 7px;
 
@@ -132,17 +308,73 @@ body {
 
     font-size: 15px;
 
-    margin-top: 10px;
+    margin-top: 18px;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+
 }
 
-button:hover {
+
+.read-button:hover {
+
     opacity: 0.88;
+
+    transform:
+        translateY(-1px);
+
 }
 
 
-/* ------------------------------
-   VIEWER
------------------------------- */
+.read-button:active {
+
+    transform:
+        translateY(0);
+
+}
+
+
+
+/* =========================================
+   NO SEARCH RESULTS
+========================================= */
+
+.no-results {
+
+    text-align: center;
+
+    padding:
+        40px
+        20px;
+
+    color: #6d7478;
+
+    font-size: 17px;
+
+}
+
+
+.no-results p {
+
+    margin:
+        5px
+        0;
+
+}
+
+
+.hidden {
+
+    display: none !important;
+
+}
+
+
+
+/* =========================================
+   FLIPBOOK VIEWER
+========================================= */
 
 .viewer {
 
@@ -150,99 +382,296 @@ button:hover {
 
     inset: 0;
 
-    z-index: 1000;
+    z-index: 9999;
 
     background:
-        rgba(30, 35, 38, 0.97);
+        rgba(30, 34, 36, 0.97);
 
     display: flex;
 
     flex-direction: column;
 
     align-items: center;
+
+    justify-content: center;
+
+    padding:
+        15px;
+
 }
 
 
-.hidden {
-    display: none;
-}
 
+/* =========================================
+   VIEWER HEADER
+========================================= */
 
 .viewer-header {
 
     width: 100%;
 
-    padding: 15px 20px;
+    max-width: 1400px;
 
     display: flex;
+
+    align-items: center;
 
     justify-content: space-between;
 
-    align-items: center;
+    padding:
+        5px
+        5px
+        15px;
 
     color: white;
 
-    font-family: Arial, sans-serif;
 }
 
+
+.close-button {
+
+    border: none;
+
+    background: #e07a5f;
+
+    color: white;
+
+    padding:
+        10px
+        18px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+}
+
+
+.close-button:hover {
+
+    opacity: 0.88;
+
+}
+
+
+#page-number {
+
+    font-size: 15px;
+
+    color: #eeeeee;
+
+}
+
+
+
+/* =========================================
+   BOOK CONTAINER
+
+   The JavaScript automatically determines
+   the correct dimensions from the PDF.
+========================================= */
 
 .book-container {
 
-    flex: 1;
-
-    width: 95%;
-
-    max-width: 1100px;
+    position: relative;
 
     display: flex;
-
-    justify-content: center;
 
     align-items: center;
 
-    overflow: hidden;
+    justify-content: center;
+
+    max-width: 95vw;
+
+    max-height: 78vh;
+
 }
 
 
-/* ------------------------------
-   PAGE FLIP
------------------------------- */
 
-#book-container .page {
-    background: white;
+/* =========================================
+   PAGE-FLIP CANVAS / BOOK
+========================================= */
+
+.book-container canvas {
+
+    display: block;
+
 }
 
+
+
+/* =========================================
+   VIEWER CONTROLS
+========================================= */
 
 .controls {
 
-    padding: 15px;
-
     display: flex;
 
-    gap: 15px;
+    gap: 12px;
+
+    margin-top: 18px;
+
 }
 
 
-/* ------------------------------
-   MOBILE
------------------------------- */
+.controls button {
 
-@media (max-width: 600px) {
+    border: none;
+
+    background: white;
+
+    color: #2a3439;
+
+    padding:
+        10px
+        20px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+}
+
+
+.controls button:hover {
+
+    background: #f1e7dc;
+
+}
+
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.site-footer {
+
+    text-align: center;
+
+    background: #eee5dc;
+
+    padding:
+        25px
+        20px;
+
+    color: #626b70;
+
+    font-size: 14px;
+
+}
+
+
+.site-footer p {
+
+    margin:
+        4px
+        0;
+
+}
+
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+
+    .site-header {
+
+        padding:
+            25px
+            15px;
+
+    }
+
 
     .site-header h1 {
-        font-size: 28px;
+
+        font-size: 29px;
+
     }
+
 
     .site-header p {
+
         font-size: 15px;
+
     }
 
-    .library h2 {
+
+    .library {
+
+        padding:
+            30px
+            15px
+            50px;
+
+    }
+
+
+    .category-section h2 {
+
         font-size: 25px;
+
     }
 
-    .book-container {
-        width: 100%;
+
+    .book-grid {
+
+        grid-template-columns:
+            minmax(180px, 260px);
+
+        gap: 25px;
+
+    }
+
+
+    .viewer {
+
+        padding:
+            8px;
+
+    }
+
+
+    .viewer-header {
+
+        padding-bottom: 8px;
+
+    }
+
+
+    #page-number {
+
+        font-size: 13px;
+
+    }
+
+
+    .controls {
+
+        margin-top: 10px;
+
+    }
+
+
+    .controls button {
+
+        padding:
+            9px
+            14px;
+
+        font-size: 14px;
+
     }
 
 }
