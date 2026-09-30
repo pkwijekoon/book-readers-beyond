@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport"
@@ -12,138 +13,269 @@
     <link rel="stylesheet"
           href="style.css">
 
-    <!-- StPageFlip -->
+    <!-- Page Flip Library -->
     <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
 
-    <!-- PDF.js -->
+    <!-- Our JavaScript -->
     <script type="module"
             src="script.js">
     </script>
+
 </head>
+
 
 <body>
 
-    <header class="site-header">
 
-        <h1>📚 Book Readers & Beyond</h1>
+<!-- =========================================
+     HEADER
+========================================= -->
 
-        <p>
-            A little place for stories, imagination,
-            and wonderful adventures.
-        </p>
+<header class="site-header">
 
-    </header>
+    <h1>📚 Book Readers & Beyond</h1>
 
-
-    <main>
-
-        <section class="library">
-
-            <h2>Children's Storybooks</h2>
-
-            <div class="book-grid">
-
-                <!-- BOOK 1 -->
-
-                <article class="book-card">
-
-                    <img
-                        src="covers/be-kind-to-every-creature.jpg"
-                        alt="Be Kind to Every Creature book cover"
-                    >
-
-                    <h3>
-                        Be Kind to Every Creature!
-                    </h3>
-
-                    <p>
-                        A gentle story about kindness,
-                        caring hearts, and little creatures.
-                    </p>
-
-                    <button
-                        onclick="openBook('books/be-kind-to-every-creature.pdf')">
-
-                        📖 Read Book
-
-                    </button>
-
-                </article>
-<!-- BOOK 2 -->
-
-                <article class="book-card">
-
-                    <img
-                        src="covers/kind-little-fox.jpg"
-                        alt="Kind Little Fox book cover"
-                    >
-
-                    <h3>
-                        The Kind Little Fox
-                    </h3>
-
-                    <p>
-                        A gentle story about a friendly little fox,
-                        who teaches five kids a very big lesson.
-                    </p>
-
-                    <button
-                        onclick="openBook('books/kind-little-fox.pdf')">
-
-                        📖 Read Book
-
-                    </button>
-
-                </article>
+    <p>
+        Stories • Books • Imagination • Learning
+    </p>
 
 
-            </div>
+    <!-- SEARCH -->
 
-        </section>
+    <div class="search-box">
 
-    </main>
-
-
-    <!-- FLIPBOOK VIEWER -->
-
-    <div
-        id="viewer"
-        class="viewer hidden"
-    >
-
-        <div class="viewer-header">
-
-            <button onclick="closeBook()">
-                ✕ Close
-            </button>
-
-            <span id="page-number">
-                Loading...
-            </span>
-
-        </div>
-
-
-        <div
-            id="book-container"
-            class="book-container"
+        <input
+            type="search"
+            id="searchInput"
+            placeholder="Search Books..."
+            aria-label="Search Books"
         >
-        </div>
 
-
-        <div class="controls">
-
-            <button onclick="previousPage()">
-                ◀ Previous
-            </button>
-
-            <button onclick="nextPage()">
-                Next ▶
-            </button>
-
-        </div>
+        <span class="search-icon"
+              aria-hidden="true">
+            🔎
+        </span>
 
     </div>
+
+</header>
+
+
+
+<!-- =========================================
+     MAIN LIBRARY
+========================================= -->
+
+<main class="library">
+
+
+    <!-- =====================================
+         BOOKS
+    ====================================== -->
+
+    <section class="category-section">
+
+        <h2>📚 My Books</h2>
+
+
+        <div class="book-grid"
+             id="book-library">
+
+
+            <!-- =================================
+                 BOOK 1
+            ================================== -->
+
+            <article
+                class="book-card"
+
+                data-title="Be Kind to Every Creature"
+
+                data-category="Children's Book"
+
+                data-description="A gentle story about kindness, caring hearts, and little creatures."
+            >
+
+                <img
+                    src="covers/be-kind-to-every-creature.jpg"
+
+                    alt="Be Kind to Every Creature book cover"
+                >
+
+
+                <button
+                    class="read-button"
+
+                    onclick="openBook(
+                        'books/be-kind-to-every-creature.pdf'
+                    )"
+                >
+
+                    📖 Read Book
+
+                </button>
+
+            </article>
+
+
+            <!-- =================================
+                 ADD MORE BOOKS HERE
+            ==================================
+
+            Example:
+
+            <article
+                class="book-card"
+
+                data-title="Your Book Title"
+
+                data-category="Children's Book"
+
+                data-description="A short description of your book."
+            >
+
+                <img
+                    src="covers/your-book-cover.jpg"
+
+                    alt="Your Book Title book cover"
+                >
+
+                <button
+                    class="read-button"
+
+                    onclick="openBook(
+                        'books/your-book.pdf'
+                    )"
+                >
+
+                    📖 Read Book
+
+                </button>
+
+            </article>
+
+            ================================= -->
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         NO SEARCH RESULTS
+    ========================================== -->
+
+    <div
+        id="no-results"
+        class="no-results hidden"
+    >
+
+        <p>📚 No books found.</p>
+
+        <p>
+            Try another title or keyword.
+        </p>
+
+    </div>
+
+
+</main>
+
+
+
+<!-- =========================================
+     FLIPBOOK VIEWER
+========================================= -->
+
+<div
+    id="viewer"
+    class="viewer hidden"
+>
+
+
+    <!-- VIEWER HEADER -->
+
+    <div class="viewer-header">
+
+        <button
+            onclick="closeBook()"
+
+            class="close-button"
+        >
+
+            ✕ Close
+
+        </button>
+
+
+        <span id="page-number">
+
+            Loading...
+
+        </span>
+
+    </div>
+
+
+
+    <!-- BOOK -->
+
+    <div
+        id="book-container"
+
+        class="book-container"
+    >
+    </div>
+
+
+
+    <!-- CONTROLS -->
+
+    <div class="controls">
+
+        <button
+            onclick="previousPage()"
+        >
+
+            ◀ Previous
+
+        </button>
+
+
+        <button
+            onclick="nextPage()"
+        >
+
+            Next ▶
+
+        </button>
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer class="site-footer">
+
+    <p>
+        © 2026 Pushpakanthie Wijekoon
+    </p>
+
+    <p>
+        Books and original creative works are
+        protected by copyright.
+    </p>
+
+</footer>
+
 
 </body>
 
