@@ -6,16 +6,13 @@
     box-sizing: border-box;
 }
 
-
 html {
     scroll-behavior: smooth;
 }
 
-
 body {
 
     margin: 0;
-
     padding: 0;
 
     font-family:
@@ -28,9 +25,7 @@ body {
     color: #2a3439;
 
     line-height: 1.6;
-
 }
-
 
 
 /* =========================================
@@ -47,9 +42,7 @@ body {
         35px
         20px
         30px;
-
 }
-
 
 .site-header h1 {
 
@@ -61,9 +54,7 @@ body {
     font-size: 40px;
 
     color: #2a3439;
-
 }
-
 
 .site-header p {
 
@@ -74,9 +65,7 @@ body {
     font-size: 17px;
 
     color: #5f686d;
-
 }
-
 
 
 /* =========================================
@@ -93,9 +82,7 @@ body {
         22px
         auto
         0;
-
 }
-
 
 .search-box input {
 
@@ -123,9 +110,7 @@ body {
     box-shadow:
         0 4px 14px
         rgba(0, 0, 0, 0.06);
-
 }
-
 
 .search-box input:focus {
 
@@ -134,9 +119,7 @@ body {
     box-shadow:
         0 0 0 3px
         rgba(224, 122, 95, 0.15);
-
 }
-
 
 .search-icon {
 
@@ -152,9 +135,7 @@ body {
     font-size: 21px;
 
     pointer-events: none;
-
 }
-
 
 
 /* =========================================
@@ -173,9 +154,7 @@ body {
         45px
         25px
         70px;
-
 }
-
 
 
 /* =========================================
@@ -185,9 +164,7 @@ body {
 .category-section {
 
     margin-bottom: 45px;
-
 }
-
 
 .category-section h2 {
 
@@ -201,9 +178,7 @@ body {
         35px;
 
     color: #2a3439;
-
 }
-
 
 
 /* =========================================
@@ -223,9 +198,7 @@ body {
     justify-content: center;
 
     gap: 35px;
-
 }
-
 
 
 /* =========================================
@@ -251,9 +224,7 @@ body {
     text-align: center;
 
     padding-bottom: 18px;
-
 }
-
 
 .book-card:hover {
 
@@ -263,9 +234,7 @@ body {
     box-shadow:
         0 12px 30px
         rgba(0, 0, 0, 0.15);
-
 }
-
 
 
 /* =========================================
@@ -281,9 +250,7 @@ body {
     display: block;
 
     object-fit: contain;
-
 }
-
 
 
 /* =========================================
@@ -313,9 +280,7 @@ body {
     transition:
         opacity 0.2s ease,
         transform 0.2s ease;
-
 }
-
 
 .read-button:hover {
 
@@ -323,17 +288,13 @@ body {
 
     transform:
         translateY(-1px);
-
 }
-
 
 .read-button:active {
 
     transform:
         translateY(0);
-
 }
-
 
 
 /* =========================================
@@ -351,25 +312,19 @@ body {
     color: #6d7478;
 
     font-size: 17px;
-
 }
-
 
 .no-results p {
 
     margin:
         5px
         0;
-
 }
-
 
 .hidden {
 
     display: none !important;
-
 }
-
 
 
 /* =========================================
@@ -395,11 +350,8 @@ body {
 
     justify-content: center;
 
-    padding:
-        15px;
-
+    padding: 15px;
 }
-
 
 
 /* =========================================
@@ -425,8 +377,10 @@ body {
 
     color: white;
 
-}
+    position: relative;
 
+    z-index: 10001;
+}
 
 .close-button {
 
@@ -446,31 +400,26 @@ body {
 
     font-size: 15px;
 
-}
+    position: relative;
 
+    z-index: 10002;
+}
 
 .close-button:hover {
 
     opacity: 0.88;
-
 }
-
 
 #page-number {
 
     font-size: 15px;
 
     color: #eeeeee;
-
 }
-
 
 
 /* =========================================
    BOOK CONTAINER
-
-   The JavaScript automatically determines
-   the correct dimensions from the PDF.
 ========================================= */
 
 .book-container {
@@ -487,20 +436,8 @@ body {
 
     max-height: 78vh;
 
+    z-index: 10000;
 }
-
-
-
-/* =========================================
-   PAGE-FLIP CANVAS / BOOK
-========================================= */
-
-.book-container canvas {
-
-    display: block;
-
-}
-
 
 
 /* =========================================
@@ -515,8 +452,10 @@ body {
 
     margin-top: 18px;
 
-}
+    position: relative;
 
+    z-index: 10005;
+}
 
 .controls button {
 
@@ -536,15 +475,23 @@ body {
 
     font-size: 15px;
 
-}
+    position: relative;
 
+    z-index: 10006;
+
+    pointer-events: auto;
+}
 
 .controls button:hover {
 
     background: #f1e7dc;
-
 }
 
+.controls button:active {
+
+    transform:
+        translateY(1px);
+}
 
 
 /* =========================================
@@ -564,18 +511,14 @@ body {
     color: #626b70;
 
     font-size: 14px;
-
 }
-
 
 .site-footer p {
 
     margin:
         4px
         0;
-
 }
-
 
 
 /* =========================================
@@ -584,29 +527,22 @@ body {
 
 @media (max-width: 700px) {
 
-
     .site-header {
 
         padding:
             25px
             15px;
-
     }
-
 
     .site-header h1 {
 
         font-size: 29px;
-
     }
-
 
     .site-header p {
 
         font-size: 15px;
-
     }
-
 
     .library {
 
@@ -614,16 +550,12 @@ body {
             30px
             15px
             50px;
-
     }
-
 
     .category-section h2 {
 
         font-size: 25px;
-
     }
-
 
     .book-grid {
 
@@ -631,38 +563,30 @@ body {
             minmax(180px, 260px);
 
         gap: 25px;
-
     }
-
 
     .viewer {
 
         padding:
             8px;
-
     }
-
 
     .viewer-header {
 
         padding-bottom: 8px;
-
     }
-
 
     #page-number {
 
         font-size: 13px;
-
     }
-
 
     .controls {
 
         margin-top: 10px;
 
+        gap: 8px;
     }
-
 
     .controls button {
 
@@ -671,7 +595,5 @@ body {
             14px;
 
         font-size: 14px;
-
     }
-
 }
