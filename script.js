@@ -39,10 +39,6 @@ async function openBook(pdfPath) {
         document.getElementById("page-number");
 
 
-    /* -------------------------------------
-       SHOW VIEWER
-    ------------------------------------- */
-
     viewer.classList.remove("hidden");
 
     container.innerHTML = "";
@@ -67,7 +63,7 @@ async function openBook(pdfPath) {
 
 
         /* =================================
-           GET FIRST PAGE DIMENSIONS
+           GET FIRST PAGE SIZE
         ================================= */
 
         const firstPage =
@@ -95,7 +91,7 @@ async function openBook(pdfPath) {
 
 
         /* =================================
-           DETERMINE BOOK ORIENTATION
+           CALCULATE BOOK SIZE
         ================================= */
 
         let bookWidth;
@@ -103,30 +99,20 @@ async function openBook(pdfPath) {
         let bookHeight;
 
 
-        /*
-         * The PageFlip library needs the
-         * dimensions of ONE PAGE.
-         *
-         * We choose a suitable display
-         * size while preserving the PDF's
-         * original proportions.
-         */
-
-
         const maxPageWidth =
             520;
-
 
         const maxPageHeight =
             720;
 
 
-        if (aspectRatio >= 0.95 &&
-            aspectRatio <= 1.05) {
 
-            /*
-             * SQUARE BOOK
-             */
+        /* SQUARE */
+
+        if (
+            aspectRatio >= 0.95 &&
+            aspectRatio <= 1.05
+        ) {
 
             bookWidth = 520;
 
@@ -134,24 +120,23 @@ async function openBook(pdfPath) {
 
         }
 
+
+        /* LANDSCAPE */
+
         else if (aspectRatio > 1) {
 
-            /*
-             * LANDSCAPE BOOK
-             */
-
             bookWidth =
-                Math.min(
-                    maxPageWidth,
-                    originalWidth
-                );
+                maxPageWidth;
 
             bookHeight =
                 bookWidth /
                 aspectRatio;
 
 
-            if (bookHeight > maxPageHeight) {
+            if (
+                bookHeight >
+                maxPageHeight
+            ) {
 
                 bookHeight =
                     maxPageHeight;
@@ -159,29 +144,27 @@ async function openBook(pdfPath) {
                 bookWidth =
                     bookHeight *
                     aspectRatio;
-
             }
 
         }
 
+
+        /* PORTRAIT */
+
         else {
 
-            /*
-             * PORTRAIT BOOK
-             */
-
             bookHeight =
-                Math.min(
-                    maxPageHeight,
-                    originalHeight
-                );
+                maxPageHeight;
 
             bookWidth =
                 bookHeight *
                 aspectRatio;
 
 
-            if (bookWidth > maxPageWidth) {
+            if (
+                bookWidth >
+                maxPageWidth
+            ) {
 
                 bookWidth =
                     maxPageWidth;
@@ -189,7 +172,6 @@ async function openBook(pdfPath) {
                 bookHeight =
                     bookWidth /
                     aspectRatio;
-
             }
 
         }
@@ -197,12 +179,11 @@ async function openBook(pdfPath) {
 
 
         /* =================================
-           ROUND DIMENSIONS
+           ROUND NUMBERS
         ================================= */
 
         bookWidth =
             Math.round(bookWidth);
-
 
         bookHeight =
             Math.round(bookHeight);
@@ -210,7 +191,7 @@ async function openBook(pdfPath) {
 
 
         /* =================================
-           RENDER ALL PDF PAGES
+           RENDER PDF PAGES
         ================================= */
 
         const pages = [];
@@ -226,11 +207,6 @@ async function openBook(pdfPath) {
             const page =
                 await currentPDF.getPage(i);
 
-
-            /*
-             * Render at a higher resolution
-             * for better image quality.
-             */
 
             const renderScale = 1.5;
 
@@ -259,7 +235,6 @@ async function openBook(pdfPath) {
                 viewport.height;
 
 
-
             await page.render({
 
                 canvasContext:
@@ -271,10 +246,6 @@ async function openBook(pdfPath) {
             }).promise;
 
 
-
-            /*
-             * Convert the page into an image.
-             */
 
             pages.push(
                 canvas.toDataURL(
@@ -288,7 +259,7 @@ async function openBook(pdfPath) {
 
 
         /* =================================
-           CREATE PAGE FLIP
+           CREATE FLIPBOOK
         ================================= */
 
         pageFlip =
@@ -296,22 +267,14 @@ async function openBook(pdfPath) {
                 container,
                 {
 
-                    /*
-                     * These dimensions are
-                     * automatically selected
-                     * according to the PDF.
-                     */
-
                     width:
                         bookWidth,
 
                     height:
                         bookHeight,
 
-
                     size:
                         "stretch",
-
 
                     minWidth:
                         220,
@@ -319,36 +282,38 @@ async function openBook(pdfPath) {
                     maxWidth:
                         650,
 
-
                     minHeight:
                         220,
 
                     maxHeight:
                         800,
 
-
                     showCover:
                         true,
-
 
                     drawShadow:
                         true,
 
-
                     flippingTime:
                         900,
-
 
                     useMouseEvents:
                         true,
 
-
                     mobileScrollSupport:
                         true,
 
-
                     maxShadowOpacity:
-                        0.5
+                        0.5,
+
+                    /*
+                     * Allow buttons and other
+                     * HTML elements outside the
+                     * book to receive clicks.
+                     */
+
+                    clickEventForward:
+                        true
 
                 }
             );
@@ -366,7 +331,7 @@ async function openBook(pdfPath) {
 
 
         /* =================================
-           PAGE NUMBER
+           PAGE FLIP EVENT
         ================================= */
 
         pageFlip.on(
@@ -418,6 +383,54 @@ async function openBook(pdfPath) {
 
 
 /* =========================================
+   NEXT PAGE
+========================================= */
+
+function nextPage() {
+
+    if (
+        pageFlip &&
+        currentPDF
+    ) {
+
+        console.log(
+            "Next button clicked"
+        );
+
+
+        pageFlip.flipNext();
+
+    }
+
+}
+
+
+
+/* =========================================
+   PREVIOUS PAGE
+========================================= */
+
+function previousPage() {
+
+    if (
+        pageFlip &&
+        currentPDF
+    ) {
+
+        console.log(
+            "Previous button clicked"
+        );
+
+
+        pageFlip.flipPrev();
+
+    }
+
+}
+
+
+
+/* =========================================
    CLOSE BOOK
 ========================================= */
 
@@ -438,6 +451,9 @@ function closeBook() {
     }
 
 
+    currentPDF = null;
+
+
     viewer.classList.add(
         "hidden"
     );
@@ -446,42 +462,6 @@ function closeBook() {
     document.getElementById(
         "book-container"
     ).innerHTML = "";
-
-}
-
-
-
-/* =========================================
-   NEXT PAGE
-========================================= */
-
-function nextPage() {
-
-    if (pageFlip) {
-
-        pageFlip.flipNext(
-            "bottom"
-        );
-
-    }
-
-}
-
-
-
-/* =========================================
-   PREVIOUS PAGE
-========================================= */
-
-function previousPage() {
-
-    if (pageFlip) {
-
-        pageFlip.flipPrev(
-            "bottom"
-        );
-
-    }
 
 }
 
@@ -511,7 +491,6 @@ function setupSearch() {
         );
 
 
-
     searchInput.addEventListener(
         "input",
         function() {
@@ -524,7 +503,6 @@ function setupSearch() {
 
 
             let visibleBooks = 0;
-
 
 
             bookCards.forEach(
@@ -552,15 +530,6 @@ function setupSearch() {
                         ).toLowerCase();
 
 
-
-                    /*
-                     * Search through:
-                     *
-                     * Book title
-                     * Category
-                     * Description
-                     */
-
                     const matches =
                         title.includes(
                             searchTerm
@@ -573,7 +542,6 @@ function setupSearch() {
                         description.includes(
                             searchTerm
                         );
-
 
 
                     if (matches) {
@@ -596,10 +564,6 @@ function setupSearch() {
             );
 
 
-
-            /* =================================
-               NO RESULTS MESSAGE
-            ================================= */
 
             if (
                 searchTerm !== "" &&
@@ -637,8 +601,8 @@ document.addEventListener(
 
 
         /*
-         * Do nothing if the search box
-         * is being used.
+         * Don't turn pages while typing
+         * in the search box.
          */
 
         if (
@@ -652,9 +616,9 @@ document.addEventListener(
         }
 
 
-
         if (
-            event.key === "ArrowRight"
+            event.key ===
+            "ArrowRight"
         ) {
 
             nextPage();
@@ -662,9 +626,9 @@ document.addEventListener(
         }
 
 
-
         if (
-            event.key === "ArrowLeft"
+            event.key ===
+            "ArrowLeft"
         ) {
 
             previousPage();
@@ -672,9 +636,9 @@ document.addEventListener(
         }
 
 
-
         if (
-            event.key === "Escape"
+            event.key ===
+            "Escape"
         ) {
 
             closeBook();
@@ -704,14 +668,11 @@ document.addEventListener(
 window.openBook =
     openBook;
 
-
 window.closeBook =
     closeBook;
 
-
 window.nextPage =
     nextPage;
-
 
 window.previousPage =
     previousPage;
